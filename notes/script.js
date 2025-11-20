@@ -1,7 +1,3 @@
-/*************************************************************************
- * Create Note Popup Logic
- **************************************************************************/
-
 function popup() {
   const popupContainer = document.createElement("div");
 
@@ -46,10 +42,6 @@ function createNote() {
   }
 }
 
-/*************************************************************************
- * Display Notes Logic
- **************************************************************************/
-
 function displayNotes() {
   const notesList = document.getElementById("notes-list");
   notesList.innerHTML = "";
@@ -68,10 +60,6 @@ function displayNotes() {
     notesList.appendChild(listItem);
   });
 }
-
-/*************************************************************************
- * Edit Note Popup Logic
- **************************************************************************/
 
 function editNote(noteId) {
   const notes = JSON.parse(localStorage.getItem("notes")) || [];
@@ -109,7 +97,6 @@ function updateNote() {
     const noteId = editingPopup.getAttribute("data-note-id");
     let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
-    // Find the note to update
     const updatedNotes = notes.map((note) => {
       if (note.id == noteId) {
         return { id: note.id, text: noteText };
@@ -117,20 +104,13 @@ function updateNote() {
       return note;
     });
 
-    // Update the notes in local storage
     localStorage.setItem("notes", JSON.stringify(updatedNotes));
 
-    // Close the editing popup
     editingPopup.remove();
 
-    // Refresh the displayed notes
     displayNotes();
   }
 }
-
-/*************************************************************************
- * Delete Note Logic
- **************************************************************************/
 
 function deleteNote(noteId) {
   let notes = JSON.parse(localStorage.getItem("notes")) || [];
@@ -141,3 +121,4 @@ function deleteNote(noteId) {
 }
 
 displayNotes();
+
